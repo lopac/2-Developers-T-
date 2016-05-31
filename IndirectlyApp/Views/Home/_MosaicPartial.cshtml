@@ -23,10 +23,25 @@
         <div class="col-md-12">
             @foreach (var comment in Model.Comments)
             {
-                <strong>@comment.User.UserName</strong> @comment.Body
-               <br/>
+                <strong>@comment.User.UserName</strong>
+                @comment.Body
+                <br/>
             }
-            
+
         </div>
     </div>
+
+    @using (Html.BeginForm("Create", "Mosaic", FormMethod.Post))
+    {
+        @Html.Hidden("id", Model.Id)
+        <p>
+            <input type="submit" value="Like" />
+        </p>
+    } 
+    <div class="row">
+        <div class="col-md-12">
+            <strong>15 likes</strong>
+        </div>
+    </div>
+
 </div>
