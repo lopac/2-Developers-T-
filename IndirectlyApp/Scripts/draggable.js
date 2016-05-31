@@ -10,9 +10,15 @@
     $(window).resize(function () {
         
         var containerWidth = $("#containment-wrapper").width();
-
+        //var width = 224;
+        //var height = 289;
         //alert(container);
         //var slika1 = ;
-        $("#item1").css("width", $("#item1").width() * (containerWidth / 500));
+        var leftx = 100;
+        var top = 100;
+        $("#item1").css("width", 224 * (containerWidth / 500));
+        $("#item1").css("height", "auto");
+        $("#item1").css("left", 100 * (containerWidth / 500));
+        //$("#item1").css("height", 100 * 500);
     });
   });
