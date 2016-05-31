@@ -1,7 +1,28 @@
 ﻿@{
     ViewBag.Title = "About";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+@Scripts.Render("http://code.jquery.com/jquery-1.10.2.js")
+@Scripts.Render("http://code.jquery.com/ui/1.11.4/jquery-ui.js")
+@Styles.Render("http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css")
+@Scripts.Render("~/Scripts/draggable.js")
+@Styles.Render("~/Content/draggable.css")
+
+
+
+
+<h3>Constrain movement along an axis:</h3>
+
+
+<div id="containment-wrapper" class="row" style="outline:1px ">
+
+
+    <img id="item1" class="draggable ui-widget-content" src="http://ecx.images-amazon.com/images/I/71U2HBp7SZL._UY445_.jpg" />
+
+</div>
+
+
+
+
+
+<button id="click"> Save me! </button>
