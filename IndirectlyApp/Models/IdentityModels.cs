@@ -8,10 +8,14 @@ namespace IndirectlyApp.Models
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<Mosaic> Mosaics { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
+        
 
         public static ApplicationDbContext Create()
         {
