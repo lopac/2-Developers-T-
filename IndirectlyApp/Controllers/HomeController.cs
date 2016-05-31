@@ -13,8 +13,10 @@ namespace IndirectlyApp.Controllers
     {
  
         private ApplicationDbContext db = new ApplicationDbContext();
+        
         public ActionResult Index()
         {
+            
             var homeViewModel = new HomeViewModel();
             var mosaics = db.Mosaics;
             homeViewModel.Mosaics = mosaics;
