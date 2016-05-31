@@ -14,6 +14,8 @@ namespace IndirectlyApp.Models
         {
             public virtual ICollection<Comment> Comments { get; set; }
             public virtual ICollection<Mosaic> Mosaics { get; set; }
+            public virtual ICollection<Mosaic> LikedMosaics { get; set; }
+
             public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
             {
                 // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

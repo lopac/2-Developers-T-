@@ -181,6 +181,10 @@
     <Compile Include="Migrations\201605311009456_Add base models.Designer.cs">
       <DependentUpon>201605311009456_Add base models.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605311734083_Add mosaic likes.cs" />
+    <Compile Include="Migrations\201605311734083_Add mosaic likes.Designer.cs">
+      <DependentUpon>201605311734083_Add mosaic likes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -270,6 +274,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605311009456_Add base models.resx">
       <DependentUpon>201605311009456_Add base models.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605311734083_Add mosaic likes.resx">
+      <DependentUpon>201605311734083_Add mosaic likes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

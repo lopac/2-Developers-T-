@@ -15,7 +15,23 @@ namespace IndirectlyApp.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-        
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+
+            modelBuilder.Entity<Mosaic>()
+                        .HasMany<ApplicationUser>(s => s.LikedBy)
+                        .WithMany(c => c.LikedMosaics)
+                        .Map(cs =>
+                        {
+                            cs.MapLeftKey("MosaicId");
+                            cs.MapRightKey("UserId");
+                            cs.ToTable("MosaicLikedBy");
+                        });
+
+            base.OnModelCreating(modelBuilder);
+        }
+
 
         public static ApplicationDbContext Create()
         {
