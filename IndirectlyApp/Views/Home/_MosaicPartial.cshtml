@@ -1,0 +1,32 @@
+﻿@model IndirectlyApp.Models.Mosaic
+<div class="container col-md-6 col-md-offset-3">
+    <div class="row">
+        @*Username*@
+        <div class="col-md-6">@Model.User.Email</div>
+        @*DatePosted*@
+        <div class="col-md-6">4d</div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">Slika</div>
+    </div>
+
+    @*Likes*@
+
+    <div class="row">
+        <div class="col-md-12">
+            <strong>15 likes</strong>
+        </div>
+    </div>
+
+    @*Comments*@
+    <div class="row">
+        <div class="col-md-12">
+            @foreach (var comment in Model.Comments)
+            {
+                <strong>@comment.User.UserName</strong> @comment.Body
+               <br/>
+            }
+            
+        </div>
+    </div>
+</div>

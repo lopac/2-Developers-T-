@@ -1,8 +1,10 @@
-﻿@{
+﻿@model IndirectlyApp.ViewModels.HomeViewModel
+@{
     ViewBag.Title = "Home Page";
 }
 
+@foreach (var mosaic in Model.Mosaics)
+{
+    @Html.Partial("_MosaicPartial", mosaic)
+}
 
-<div class="row">
-    <div class="span"
-</div>

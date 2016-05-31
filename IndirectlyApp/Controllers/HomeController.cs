@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using IndirectlyApp.Models;
+using IndirectlyApp.ViewModels;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace IndirectlyApp.Controllers
@@ -11,10 +12,13 @@ namespace IndirectlyApp.Controllers
     public class HomeController : Controller
     {
  
-      
+        private ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index()
         {
-            return View();
+            var homeViewModel = new HomeViewModel();
+            var mosaics = db.Mosaics;
+            homeViewModel.Mosaics = mosaics;
+            return View(homeViewModel);
         }
 
         public ActionResult About()
