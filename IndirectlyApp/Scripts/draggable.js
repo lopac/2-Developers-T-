@@ -1,8 +1,8 @@
 ﻿$(function() {
  
-    $("#item1-img")
+    $("#img_rnd")
        .resizable({ ghost: true });
-    $("#item1").draggable({ containment: "#containment-wrapper", scroll: true });
+    $("#rnd").draggable({ containment: "#containment-wrapper", scroll: false });
    
 
 
@@ -15,21 +15,18 @@
     });
 
 
-
-    $(window).resize(function () {
+    var starawidth = $("#containment-wrapper").width();
+    $(window).resize(function (e) {
+        if (e.target != window) {
+            return;
+        }
         
         var containerWidth = $("#containment-wrapper").width();
-      
-
-        var leftx = 100;
-        var top = 100;
-        //$("#item1-img").css("width", 224 * (containerWidth / 500));
-        //$("#item1-img").css("height", "auto");
-        //$("#item1-img").css("left", 100 * (containerWidth / 500));
-     
-
-        $("#item1").css("width", 224 * (containerWidth / 500));
-        $("#item1").css("height", "auto");
-        $("#item1").css("left", 100 * (containerWidth / 500));
+        var widthz = $("#img_rnd").width();
+        $("#img_rnd").css("width", (widthz * (containerWidth/starawidth)) + 2);
+        $(".ui-wrapper").css("width",( widthz * (containerWidth / starawidth)) + 2);
+        var positiony = $("#rnd").position().left;
+        $("#rnd").css("left", positiony * (containerWidth / starawidth));
+        starawidth = $("#containment-wrapper").width();
     });
   });
