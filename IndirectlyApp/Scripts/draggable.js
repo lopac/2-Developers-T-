@@ -1,32 +1,68 @@
-﻿$(function() {
- 
-    $("#img_rnd")
-       .resizable({ ghost: true });
-    $("#rnd").draggable({ containment: "#containment-wrapper", scroll: false });
-   
+﻿$(function () {
+
+    var oldWrapperWidth = $("#wrapper").width();
+
+
+    var items = $(".item");
+    var itemsImg = $(".item-img");
 
 
 
-    $("#click").click(function(){
-      var p = $("#item1");
-      
-        //  alert(p.offsetLeft, p.offsetTop);
-        alert(JSON.stringify(p.position()));
+    $.each(items, function () {
+        $(this).draggable({ containment: "#wrapper", scroll: false });
     });
 
 
-    var starawidth = $("#containment-wrapper").width();
-    $(window).resize(function (e) {
-        if (e.target != window) {
+    $.each(itemsImg, function (index, item) {
+        $(this).resizable({
+            ghost: true,
+            aspectRatio: item.width / item.height,
+
+
+        });
+    });
+
+
+
+    $("#click")
+        .click(function () {
+            var p = $("#item");
+            alert(JSON.stringify(p.position()));
+        });
+
+
+    //ON  Window resize
+    $(window).resize(function (event) {
+
+        if (event.target !== window) {
             return;
         }
-        
-        var containerWidth = $("#containment-wrapper").width();
-        var widthz = $("#img_rnd").width();
-        $("#img_rnd").css("width", (widthz * (containerWidth/starawidth)) + 2);
-        $(".ui-wrapper").css("width",( widthz * (containerWidth / starawidth)) + 2);
-        var positiony = $("#rnd").position().left;
-        $("#rnd").css("left", positiony * (containerWidth / starawidth));
-        starawidth = $("#containment-wrapper").width();
+
+        //<summary>
+        // parent of itemsImg is ui-draggable
+        // parent of parent is item
+        //</summary>
+
+        var newWrapperWidth = $("#wrapper").width();
+
+
+        $.each(itemsImg, function () {
+            var itemImgWidth = $(this).width();
+
+            var itemY = $(this).parent().parent().position().left;
+
+            $(this).css("width", (itemImgWidth * (newWrapperWidth / oldWrapperWidth)));
+            $(this).css("height", "auto");
+
+            $(this).parent().css("width", (itemImgWidth * (newWrapperWidth / oldWrapperWidth)));
+            $(this).parent().css("height", "auto");
+            $(this).parent().parent().css("left", itemY * (newWrapperWidth / oldWrapperWidth));
+        });
+
+
+
+
+        oldWrapperWidth = $("#wrapper").width();
     });
-  });
+
+});

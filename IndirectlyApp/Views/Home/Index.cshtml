@@ -3,13 +3,15 @@
     ViewBag.Title = "Home Page";
 }
 
+
+
 @foreach (var mosaic in Model.Mosaics)
 {
     @Html.Partial("_MosaicPartial", mosaic)
     <br/>
-    <div class="row"></div>
+    @*<div class="row"></div>*@
 
-    <hr/>
+   
 
 }
 

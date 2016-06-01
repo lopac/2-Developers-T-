@@ -8,6 +8,7 @@ namespace IndirectlyApp.ViewModels
 {
     public class HomeViewModel
     {
+        public ApplicationUser CurrentUser { get; set; }
         public IEnumerable<Mosaic> Mosaics { get; set; }
     }
 }

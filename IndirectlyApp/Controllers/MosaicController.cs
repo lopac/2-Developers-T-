@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using IndirectlyApp.Models;
+using IndirectlyApp.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace IndirectlyApp.Controllers
 {
@@ -31,9 +35,62 @@ namespace IndirectlyApp.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult CreateComment(int mosaicId, string body)
+        {
+
+          
+            try
+            {
+                var userId = User.Identity.GetUserId();
+                var user = _userManager.FindById(userId);
+
+
+                var newComment = new Comment
+                {
+                    User = user,
+                    DateTimeCreated = DateTimeOffset.UtcNow,
+                    Body = body,
+                    Mosaic = db.Mosaics.Find(mosaicId)
+                };
+
+                var commentViewModel = new CommentViewModel
+                {
+                    Body = newComment.Body,
+                    DateCreated = newComment.DateTimeCreated,
+                    MosaicId = newComment.MosaicId,
+                    Username = newComment.User.UserName
+                };
+
+                db.Comments.Add(newComment);
+
+
+                db.SaveChanges();
+                //return Json(
+                //    new
+                //    {
+                //        Data = commentViewModel
+                //    }, JsonRequestBehavior.AllowGet);
+                //Response.StatusCode = (int)HttpStatusCode.OK;
+                //return Json(
+                //   new
+                //   {
+                //       Body = "fffff"
+                //   }, JsonRequestBehavior.AllowGet);
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+
+            }
+            catch
+            {
+                //Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                //return new HttpStatusCodeResult();
+                return new JsonResult();
+            }
+        }
+
         // POST: Mosaic/Create
         [HttpPost]
-        public ActionResult Create(int id)
+        public ActionResult Like(int id)
         {
             try
             {
@@ -41,11 +98,31 @@ namespace IndirectlyApp.Controllers
                 var user = _userManager.FindById(userId);
                 db.Mosaics.Find(id).LikedBy.Add(user);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+
             }
             catch
             {
-                return View();
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
+               
+            }
+        }
+        [HttpPost]
+        public ActionResult Unlike(int id)
+        {
+            try
+            {
+                var userId = User.Identity.GetUserId();
+                var user = _userManager.FindById(userId);
+                db.Mosaics.Find(id).LikedBy.Remove(user);
+                db.SaveChanges();
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+
+            }
+            catch
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
+
             }
         }
 

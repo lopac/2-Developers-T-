@@ -10,6 +10,7 @@ namespace IndirectlyApp.Models
     {
         public int Id { get; set; }
         public string Body { get; set; }
+        public DateTimeOffset DateTimeCreated { get; set; }
         public int MosaicId { get; set; }
         public string UserId { get; set; }
         public virtual ApplicationUser User { get; set; }

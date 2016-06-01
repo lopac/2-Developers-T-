@@ -1,47 +1,60 @@
-﻿@model IndirectlyApp.Models.Mosaic
-<div class="container col-md-4 col-md-offset-4" style="outline:1px solid green">
-    <div class="row">
-        @*Username*@
-        <div class="col-md-6">Username</div>
-        @*DatePosted*@
-        <div class="col-md-2 col-md-offset-4">4d</div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">Slika</div>
-    </div>
+﻿@using IndirectlyApp.Models
+@model IndirectlyApp.Models.Mosaic
+<div class="row">
+    <div class="col-xs-6 col-xs-offset-3" style="outline: 1px solid #E5E5E5">
 
-    @*Likes*@
-
-    <div class="row">
-        <div class="col-md-12">
-            <strong>15 likes</strong>
+        <div class="row" style="background-color: #FAFAFA; padding: 8px">
+            @*Username*@
+            <div class="col-xs-6">@Model.User.Email</div>
+            @*DatePosted*@
+            <div class="col-xs-2 col-md-offset-4">4d</div>
         </div>
-    </div>
 
-    @*Comments*@
-    <div class="row">
-        <div class="col-md-12">
-            @foreach (var comment in Model.Comments)
-            {
-                <strong>@comment.User.UserName</strong>
-                @comment.Body
-                <br/>
-            }
 
+        <div class="row" style="margin-left: -30px !important; margin-right: -30px !important;">
+            <div class="col-xs-12" style="margin-left: 0px !important; margin-right: 0px !important;"><img class="img-responsive" src="https://upload.wikimedia.org/wikipedia/commons/b/bf/Blue_Tiger_Im_IMG_9450.jpg"/>
+            </div>
         </div>
-    </div>
 
-    @using (Html.BeginForm("Create", "Mosaic", FormMethod.Post))
-    {
-        @Html.Hidden("id", Model.Id)
-        <p>
-            <input type="submit" value="Like" />
-        </p>
-    } 
-    <div class="row">
-        <div class="col-md-12">
-            <strong>15 likes</strong>
+
+        @*Likes*@
+
+        <div class="row">
+            <div class="col-xs-12">
+                <strong>15 likes</strong>
+            </div>
         </div>
-    </div>
 
+        @*Comments*@
+        <div class="row">
+         
+            <div class="col-xs-12" id="commentsContainer" data-mosaicid="@Model.Id">
+                @foreach (var comment in Model.Comments)
+                {
+                    <strong>@comment.User.UserName</strong>
+                    @comment.Body
+                    <br/>
+                }
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-1">
+                @*@using (Html.BeginForm("Create", "Mosaic", FormMethod.Post))
+            {*@
+
+                <span id="@Model.Id" data-isliked="@Model.IsLiked.ToString()"  class="glyphicon glyphicon-heart" style="@(Model.IsLiked ? "color: red" : "color: #E5E5E5"); font-size: 1.5em; margin-top: 4px"></span>
+
+                @*<p>
+                        <input type="submit" value="Like" />
+                    </p>*@
+                @*}*@
+            </div>
+            <div class="col-xs-11 user-comment">
+                <input data-mosaicid="@Model.Id" data-username="@Model.User.UserName" class="form-control input-sm user-comment" type="text">
+            </div>
+        </div>
+        <br/>
+    </div>
 </div>

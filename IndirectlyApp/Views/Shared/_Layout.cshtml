@@ -6,8 +6,9 @@
     <title>@ViewBag.Title Indirect.ly</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Scripts/mosaic.js")
 
-   
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -30,18 +31,19 @@
             </div>
         </div>
     </div>
-    <div class="row body-content">
-        @RenderBody()
-        @*Clearfix*@ 
-        <div class="row"></div>
-        <hr />
-        
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+<div class="container body-content">
+    <div class="row" style="margin-top: 25px;"></div>
+    @RenderBody()
+    @*Clearfix*@
+
+    <hr/>
+
+    <footer>
+        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+    </footer>
+</div>
     @*TODO:// Remove*@
-    @*@Scripts.Render("~/bundles/jquery")*@
+    
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
