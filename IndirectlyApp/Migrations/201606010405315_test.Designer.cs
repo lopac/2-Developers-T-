@@ -7,13 +7,13 @@ namespace IndirectlyApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Addbasemodels : IMigrationMetadata
+    public sealed partial class test : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Addbasemodels));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(test));
         
         string IMigrationMetadata.Id
         {
-            get { return "201605311009456_Add base models"; }
+            get { return "201606010405315_test"; }
         }
         
         string IMigrationMetadata.Source

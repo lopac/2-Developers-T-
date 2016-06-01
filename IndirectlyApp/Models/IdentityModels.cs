@@ -10,6 +10,8 @@ namespace IndirectlyApp.Models
     {
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Mosaic> Mosaics { get; set; }
+        public DbSet<Item> Items { get; set; }
+
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

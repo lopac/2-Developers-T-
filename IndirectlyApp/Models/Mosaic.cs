@@ -15,6 +15,8 @@ namespace IndirectlyApp.Models
         public virtual ApplicationUser User { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<ApplicationUser> LikedBy { get; set; }
+        public virtual ICollection<Item> Items { get; set; }
+
         [NotMapped]
         public bool IsLiked { get; set; }
 
