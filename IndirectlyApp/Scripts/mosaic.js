@@ -1,5 +1,5 @@
 ﻿$(function () {
-
+  
     var string = {
         empty: ""
     };
@@ -15,12 +15,13 @@
                     });
         });
 
-    $(".user-comment").keypress(function (e) {
-        
+    $(".user-comment").on('keydown', function (e) {
+        e.stopPropagation();
         if (e.which !== 13) {
             return;
         }
         
+        e.Handled = true;
 
         var comment = { mosaicId: $(this).attr("data-mosaicid"), body: $(this).val()};
 
