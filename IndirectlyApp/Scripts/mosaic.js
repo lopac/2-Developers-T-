@@ -36,17 +36,17 @@
             cache: false,
             success: function (data) {
                 alert(data.Body);
-                ////console.log(user);
+                console.log(user);
 
-                //$(".user-comment").val('');
+                $(".user-comment").val('');
 
-                ////var newComment = document.createElement("strong");
+                var newComment = document.createElement("strong");
 
-                ////newComment.innerHTML = user.Data.Username;
+                newComment.innerHTML = user.Data.Username;
 
-                //$("#commentsContainer" + "[data-mosaicid='0']").append("<strong>usr</strong>").append("test").append("<br/>");
+                $("#commentsContainer" + "[data-mosaicid='0']").append("<strong>usr</strong>").append("test").append("<br/>");
 
-                ////$("#commentsContainer" + "[data-mosaicid='" + user.Data.MosaicId + "']").append("<strong>" + user.Data.Username + "</strong>").append(" " + user.Data.Body).append("<br/>");
+                $("#commentsContainer" + "[data-mosaicid='" + user.Data.MosaicId + "']").append("<strong>" + user.Data.Username + "</strong>").append(" " + user.Data.Body).append("<br/>");
 
 
             },

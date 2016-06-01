@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using IndirectlyApp.Models;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace IndirectlyApp.Migrations
